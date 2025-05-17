@@ -60,13 +60,16 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Setting Style
         view.backgroundColor = .systemBackground
         
+        // Setting View Hierarchy
         view.addSubview(pageVCView)
         view.addSubview(buttonsStackView)
         view.addSubview(label)
-        
         addChild(pageVC)
+        
+        // Setting AutoLayout
         pageVCView.translatesAutoresizingMaskIntoConstraints = false
         buttonsStackView.translatesAutoresizingMaskIntoConstraints = false
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -89,7 +92,6 @@ class ViewController: UIViewController {
         ])
         
         pageVC.dataSource = self
-        pageVC.delegate = self
         
         pageVC.setViewControllers([redViewController], direction: .forward, animated: true)
         
@@ -97,19 +99,18 @@ class ViewController: UIViewController {
         buttonToBlue.addTarget(self, action: #selector(moveToBlue), for: .touchUpInside)
     }
     
-    
     @objc func  moveToRed() {
         label.text = ""
-        pageVC.setViewControllers([redViewController], direction: .forward, animated: true) { [weak self] _ in
-            self?.label.text = "(toRed) completion handler called."
+        pageVC.setViewControllers([redViewController], direction: .reverse, animated: true) { [weak self] _ in
+            self?.label.text = "(toRed) completion callback func called."
             print(#function)
         }
     }
     
     @objc func moveToBlue() {
         label.text = ""
-        pageVC.setViewControllers([blueViewController], direction: .reverse, animated: true) { [weak self] _ in
-            self?.label.text = "(toBlue) completion handler called."
+        pageVC.setViewControllers([blueViewController], direction: .forward, animated: true) { [weak self] _ in
+            self?.label.text = "(toBlue) completion callback func called."
             print(#function)
         }
     }
@@ -137,10 +138,5 @@ extension ViewController: UIPageViewControllerDataSource {
             return nil
         }
     }
-    
-    
-}
-
-extension ViewController: UIPageViewControllerDelegate {
     
 }
