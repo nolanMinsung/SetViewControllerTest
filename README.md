@@ -7,9 +7,7 @@
 
 > `setViewControllers(_:direction:animated:completion:)`
 
-라는 메서드가 있다. 특정 뷰컨트롤러(들)로 이동하게 해 주는 메서드인데,  
-사용자가 스크롤하는 경우가 아닌, 개발자가 직접 (programatically) 페이징해야 하는 경우 사용할 수 있다.  
-(정확히는 page view controller에 어떤 뷰컨트롤러를 띄울 지 설정할 수 있는 것이며, 이때 새 뷰컨트롤러를 띄우면서 자연스러운 애니메이션이 가능하도록 지원하는 것)
+라는 메서드가 있음.
 
 이때 애니메이션 동작 후 `completion` 콜백 함수가 호출되는데, 
 ### 일부 상황에서는 콜백 함수가 호출되지 않음.
@@ -21,12 +19,14 @@
 [🔗 공식 문서](https://developer.apple.com/documentation/uikit/uipageviewcontroller/setviewcontrollers(_:direction:animated:completion:)) 에서는 콜백 함수에 대해 다음과 같이 설명하고 있다.
 
 > - completion
-> A block to be called when the page-turn animation completes.
 > 
-> The block takes the following parameters:
+>   A block to be called when the page-turn animation completes.
 > 
-> - finished
-> true if the animation finished; false if it was skipped.
+>   The block takes the following parameters:
+> 
+>   - **_finished_**
+>   
+>     true if the animation finished; false if it was skipped.
 
 ![](https://velog.velcdn.com/images/mskim98/post/f63877f5-10dd-41b5-8f21-953669ddc038/image.png)
 
